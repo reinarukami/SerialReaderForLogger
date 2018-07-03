@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class\Configuration\DefaultSerialPort.cs" />
+    <Compile Include="Class\Function\LogFunction.cs" />
     <Compile Include="SerialMonitor.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using SerialReader.Class.Configuration;
+using SerialReader.Class.Function;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -35,15 +36,15 @@ namespace SerialReader
         private async void DataRecievedHandler(object sender, SerialDataReceivedEventArgs e)
        {
 
-            var test = DefaultSerialPort.serialPort.ReadLine();
+            string json = DefaultSerialPort.serialPort.ReadLine();
 
-            richTextBox1.Invoke(new Action(() => richTextBox1.Text = richTextBox1.Text + test));
+            richTextBox1.Invoke(new Action(() => richTextBox1.Text = richTextBox1.Text + json));
 
             //API Passing parameters here
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-            await CreateLog("Api/Logger/Log");
+            await CreateLog("Api/Logger/Log", json);
 
  
         }
@@ -58,15 +59,12 @@ namespace SerialReader
             }
             return product;
         }
-        static async Task<Uri> CreateLog(string path)
+        static async Task<Uri> CreateLog(string path, string json)
         {
+            var model = JsonConvert.DeserializeObject<Logs>(json);
+            model.datetime = LogFunction.ConvertToUnixTime();
 
-            var test = new test();
-            test.values = "this is a test";
-
-            string convert = JsonConvert.SerializeObject(test);
-
-            var content = new StringContent(JsonConvert.SerializeObject(test), Encoding.UTF8, "application/json");
+            var content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
 
             HttpResponseMessage response = await client.PostAsync(
                 path, content);
@@ -76,8 +74,10 @@ namespace SerialReader
             return response.Headers.Location;
         }
 
-        public class test {
+        public class Logs {
+            public string deviceID { get; set; }
             public string values { get; set; }
+            public int datetime { get; set; }
         }
 
 

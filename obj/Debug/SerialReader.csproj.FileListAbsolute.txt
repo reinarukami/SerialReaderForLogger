@@ -33,3 +33,16 @@ C:\Users\pcuser\Documents\Visual Studio 2017\Projects\Logger\SerialReader\obj\De
 C:\Users\pcuser\Documents\Visual Studio 2017\Projects\Logger\SerialReader\obj\Debug\SerialReader.csproj.GenerateResource.Cache
 C:\Users\pcuser\Documents\Visual Studio 2017\Projects\Logger\SerialReader\obj\Debug\SerialReader.exe
 C:\Users\pcuser\Documents\Visual Studio 2017\Projects\Logger\SerialReader\obj\Debug\SerialReader.pdb
+C:\Users\pcuser\Documents\Visual Studio 2017\Projects\SerialReaderForLogger\SerialReader\bin\Debug\SerialReader.exe.config
+C:\Users\pcuser\Documents\Visual Studio 2017\Projects\SerialReaderForLogger\SerialReader\bin\Debug\SerialReader.exe
+C:\Users\pcuser\Documents\Visual Studio 2017\Projects\SerialReaderForLogger\SerialReader\bin\Debug\SerialReader.pdb
+C:\Users\pcuser\Documents\Visual Studio 2017\Projects\SerialReaderForLogger\SerialReader\bin\Debug\Newtonsoft.Json.dll
+C:\Users\pcuser\Documents\Visual Studio 2017\Projects\SerialReaderForLogger\SerialReader\bin\Debug\System.Net.Http.Formatting.dll
+C:\Users\pcuser\Documents\Visual Studio 2017\Projects\SerialReaderForLogger\SerialReader\bin\Debug\Newtonsoft.Json.xml
+C:\Users\pcuser\Documents\Visual Studio 2017\Projects\SerialReaderForLogger\SerialReader\bin\Debug\System.Net.Http.Formatting.xml
+C:\Users\pcuser\Documents\Visual Studio 2017\Projects\SerialReaderForLogger\SerialReader\obj\Debug\SerialReader.SerialMonitor.resources
+C:\Users\pcuser\Documents\Visual Studio 2017\Projects\SerialReaderForLogger\SerialReader\obj\Debug\SerialReader.Properties.Resources.resources
+C:\Users\pcuser\Documents\Visual Studio 2017\Projects\SerialReaderForLogger\SerialReader\obj\Debug\SerialReader.csproj.GenerateResource.Cache
+C:\Users\pcuser\Documents\Visual Studio 2017\Projects\SerialReaderForLogger\SerialReader\obj\Debug\SerialReader.exe
+C:\Users\pcuser\Documents\Visual Studio 2017\Projects\SerialReaderForLogger\SerialReader\obj\Debug\SerialReader.pdb
+C:\Users\pcuser\Documents\Visual Studio 2017\Projects\SerialReaderForLogger\SerialReader\obj\Debug\SerialReader.csprojResolveAssemblyReference.cache
