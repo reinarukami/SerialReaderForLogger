@@ -1,115 +1,31 @@
-String inputString = "";         // a string to hold incoming data
-boolean stringComplete = false;  // whether the string is complete
-String commandString = "";
+String deviceID = "96D88A707C3CA2AB203348A64CC55CD41E800248";      
+int inputPin = 2;               // choose the input pin (for PIR sensor)
+int pirState = LOW;             // we start, assuming no motion detected
+int val = 0;                    // variable for reading the pin status
+int count = 0;
 
-int led1Pin = 13;
-int led2Pin = 12;
-int led3Pin = 11;
-
-boolean isConnected = false;
 
 void setup() {
+  pinMode(inputPin, INPUT);     // declare sensor as input
   
   Serial.begin(9600);
-  pinMode(led1Pin,OUTPUT);
-  pinMode(led2Pin,OUTPUT);
-  pinMode(led3Pin,OUTPUT);
 }
-
-void loop() {
-
-if(stringComplete)
-{
-  stringComplete = false;
-  getCommand();
  
-  if(commandString.equals("LED1"))
-  {
-    boolean LedState = getLedState();
-    if(LedState == true)
-    {
-      turnLedOn(led1Pin);
-      Serial.println(commandString  + " Turned ON");
-    }else
-    {
-      turnLedOff(led1Pin);
-      Serial.println(commandString  + " Turned OFF");
-    }   
-  }
-    else if(commandString.equals("LED2"))
-  {
-    boolean LedState = getLedState();
-    if(LedState == true)
-    {
-      turnLedOn(led2Pin);
-      Serial.println(commandString  + " Turned ON");
-    }else
-    {
-      turnLedOff(led2Pin);
-      Serial.println(commandString  + " Turned OFF");
-    }   
-  }
-    else if(commandString.equals("LED3"))
-  {
-    boolean LedState = getLedState();
-    if(LedState == true)
-    {
-      turnLedOn(led3Pin);
-      Serial.println(commandString  + " Turned ON");
-    }else
-    {
-      turnLedOff(led3Pin);
-      Serial.println(commandString  + " Turned OFF");
-    }   
-  }
-  
-  inputString = "";
-}
-
-}
-
-boolean getLedState()
-{
-  boolean state = false;
-  if(inputString.substring(4,6).equals("ON"))
-  {
-    state = true;
-  }else
-  {
-    state = false;
-  }
-  return state;
-}
-
-void getCommand()
-{
-  if(inputString.length()>0)
-  {
-     commandString = inputString.substring(0,4);
-  }
-}
-
-void turnLedOn(int pin)
-{
-  digitalWrite(pin,HIGH);
-}
-
-void turnLedOff(int pin)
-{
-  digitalWrite(pin,LOW);
-}
-
-void serialEvent() {
-  while (Serial.available()) {
-    // get the new byte:
-    char inChar = (char)Serial.read();
-    // add it to the inputString:
-    inputString += inChar;
-    // if the incoming character is a newline, set a flag
-    // so the main loop can do something about it:
-    if (inChar == '\n') {
-      stringComplete = true;
+void loop(){
+  val = digitalRead(inputPin);  // read input value
+  if (val == HIGH) {            // check if the input is HIGH
+    if (pirState == LOW) {
+      // we have just turned on
+      count++;
+      Serial.flush();
+    
+      Serial.println("{'deviceID':'" + deviceID + "'," + "'values':'Motion Detected=" + count +"'}" ) ; 
+      Serial.flush();
+      // We only want to print on the output change, not state
+     pirState = HIGH;
+    }
+  } else {
+      pirState = LOW;
+    
     }
   }
-}
-
